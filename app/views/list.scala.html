@@ -1,0 +1,10 @@
+@(products: List[Product])(implicit messages: MessagesProvider)
+
+@main(Messages("application.name")) {
+  <dl class="products">
+  @products.map { product => 
+      <dt>@product.name</dt>
+      <dd>@product.description</dd>
+  }
+  </dl>
+}
