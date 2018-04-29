@@ -1,31 +1,56 @@
 
-@(title: String)(content: Html)(implicit messages: MessagesProvider)
+@(title: String)(content: Html)(implicit messages: MessagesProvider, flash: Flash)
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        @* Here's where we render the page title `String`. *@
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
-        
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+  <head>
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
 
-    </head>
-    <body>
-		<div class="screenshot">
-			<div class="navbar navbar-fixed-top">
-				<div class="navbar-inner">
-					<div class="container">
-						<a class="brand" href="@routes.HomeController.index()">
-							@Messages("application.name")
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-        	@content
-        	@debug()
-		</div>
-    </body>
+  </head>
+  <body>
+    <div class="screenshot">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="@routes.HomeController.index()">
+              @Messages("application.name")
+            </a>
+
+            <ul class="nav">
+              <li class="divider-vertical"></li>
+              <li class="active">
+                <a href="@routes.ProductController.list()">
+                  @Messages("products.list.navigation")
+                </a>
+              </li>
+              <li class="active">
+                <a href="@routes.ProductController.newProduct()">
+                  <i class="icon-plus icon-white">
+                    @Messages("products.new.command")
+                  </i>
+                </a>
+              </li>
+              <li class="divider-vertical"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        @if(flash.get("success").isDefined) {
+          <div class="alert alert-success">
+            @flash.get("success")
+          </div>
+        }
+        @if(flash.get("error").isDefined) {
+          <div class="alert alert-error">
+            @flash.get("error")
+          </div>
+        }
+        @content
+        @debug()
+      </div>
+    </div>
+  </body>
 </html>

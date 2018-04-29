@@ -10,8 +10,8 @@ body, p, label { font-size:15px; }
     color:white; font-weight:bold; }
 
 /* Set the width to result in a suitable resolution at 127mm wide. */
-div.screenshot { width: 800px; margin:20px; background-color:#D0E7EF; }
-.navbar-fixed-top .navbar-inner { padding-left:20px; }
+div.screenshot { width: 1000px; margin:20px; background-color:#D0E7EF; margin:auto;}
+.navbar-fixed-top .navbar-inner { padding-left:20px;}
 .navbar .nav > li > a { color:#bbb; }
 
 .screenshot > .container { width: 760px; padding: 20px; }
